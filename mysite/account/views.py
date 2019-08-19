@@ -6,13 +6,6 @@ from .getPasswords import main
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as lgin ,logout as lgout
 
-from django.http import Http404, JsonResponse
-from rest_framework.views import APIView
-from rest_framework.decorators import api_view
-from rest_framework import status
-from django.core import serializers
-import json
-
 
 def getFromId(id):
     objList = Case.objects.all()
@@ -193,9 +186,53 @@ def addPassword(request, id):
         return redirect(login)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+from django.http import Http404, JsonResponse
+from rest_framework.views import APIView
+from rest_framework.decorators import api_view
+from rest_framework import status
+from rest_framework import serializers
+from rest_framework.renderers import JSONRenderer
+import json
+
 #API
-@api_view(["POST"])
-def getcred(uinpcred):
-    print(uinpcred)
+class userDataSerializer(serializers.Serializer):
+    website = serializers.CharField(max_length=200)
+    ws_uname = serializers.CharField(max_length=200)
+    pc_uname = serializers.CharField(max_length=200)
+    pc_password = serializers.CharField(max_length=200)
+
+@api_view(['GET', 'POST'])
+def getcred(request):
+    if request.method == 'GET':
+        return JsonResponse("I got the input!", safe=False)
+    else:
+        data = request.data
+        print(data)
+        return JsonResponse("I got the input!", safe=False)
+
     #TODO
-    return JsonResponse("I got the inpu!", safe=False)
+    #return JsonResponse("I got the inpu!", safe=)
