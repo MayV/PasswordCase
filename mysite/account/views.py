@@ -186,44 +186,8 @@ def addPassword(request, id):
         return redirect(login)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 from django.http import Http404, JsonResponse
-from rest_framework.views import APIView
 from rest_framework.decorators import api_view
-from rest_framework import status
-from rest_framework import serializers
-from rest_framework.renderers import JSONRenderer
-import json
-
-#API
-class userDataSerializer(serializers.Serializer):
-    website = serializers.CharField(max_length=200)
-    ws_uname = serializers.CharField(max_length=200)
-    pc_uname = serializers.CharField(max_length=200)
-    pc_password = serializers.CharField(max_length=200)
 
 @api_view(['GET', 'POST'])
 def getcred(request):
@@ -232,7 +196,6 @@ def getcred(request):
     else:
         data = request.data
         print(data)
+        #TODO
         return JsonResponse("I got the input!", safe=False)
 
-    #TODO
-    #return JsonResponse("I got the inpu!", safe=)
