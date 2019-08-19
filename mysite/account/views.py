@@ -6,6 +6,13 @@ from .getPasswords import main
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as lgin ,logout as lgout
 
+from django.http import Http404, JsonResponse
+from rest_framework.views import APIView
+from rest_framework.decorators import api_view
+from rest_framework import status
+from django.core import serializers
+import json
+
 
 def getFromId(id):
     objList = Case.objects.all()
@@ -188,6 +195,7 @@ def addPassword(request, id):
 
 from django.http import Http404, JsonResponse
 from rest_framework.decorators import api_view
+
 
 @api_view(['GET', 'POST'])
 def getcred(request):
