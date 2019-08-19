@@ -193,9 +193,17 @@ def addPassword(request, id):
         return redirect(login)
 
 
-#API
-@api_view(["POST"])
-def getcred(uinpcred):
-    print(uinpcred)
-    #TODO
-    return JsonResponse("I got the inpu!", safe=False)
+from django.http import Http404, JsonResponse
+from rest_framework.decorators import api_view
+
+
+@api_view(['GET', 'POST'])
+def getcred(request):
+    if request.method == 'GET':
+        return JsonResponse("I got the input!", safe=False)
+    else:
+        data = request.data
+        print(data)
+        #TODO
+        return JsonResponse("I got the input!", safe=False)
+
